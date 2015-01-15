@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<title>Thermostat</title>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.7.1.js'></script>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+    $("#increment").click(function(){
+        var $n = $("#set_temp");
+        $n.val(Number($n.val())+1);
+    }); 
+    $("#decrement").click(function(){
+        var $n = $("#set_temp");
+        $n.val(Number($n.val())-1);
+    });
+});//]]>
+</script>
+</head>
+<body>
+<h3>The current temperature is  {{ cur_temp }}</h3>
+<h3>The current humidity is {{ cur_humidity }}</h3>
+<form action="{{ url_for('index') }}" id="temp_control" method="post">
+Set temp: <input type="text" id="set_temp" name="set_temp" value="{{ set_temp }}" />
+<input type="button" id="increment" value="+"/>
+<input type="button" id="decrement" value="-"/>
+<br />
+
+{% if fan_setting == "True" %}
+Fan: <input type="checkbox" id="fan_setting" name="fan_setting" checked="{{ fan_setting }}" />
+{% elif fan_setting == "False" %}
+Fan: <input type="checkbox" id="fan_setting" name="fan_setting" />
+{% endif %}
+<br />
+{% if ac_setting == "True" %}
+AC: <input type="checkbox" id="ac_setting" name="ac_setting" checked="{{ ac_setting }}" />
+{% elif ac_setting == "False" %}
+AC: <input type="checkbox" id="ac_setting" name="ac_setting" />
+{% endif %}
+<br />
+{% if heat_setting == "True" %}
+Heat: <input type="checkbox" id="heat_setting" name="heat_setting" checked="{{ heat_setting }}" />
+{% elif heat_setting == "False" %}
+Heat: <input type="checkbox" id="heat_setting" name="heat_setting" />
+{% endif %}
+<br />
+<input type="submit" value="Submit" />
+</form>
+
+
+</body>
+</html>
