@@ -51,9 +51,8 @@ while True:
 ######
 
 #we need to give the thermostat +/- a certain amount so it isn't always going on and off.
-#starting with 3*F to see how that works, might reduce to 2*F
 
-	wobble = 2
+	wobble = 1
 
 	wobble_high_temp = set_temp + wobble
 	wobble_low_temp = set_temp - wobble
